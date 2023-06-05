@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../js/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <h2>人员列表</h2>
+      <div>
+        <input type="text" v-model="keyword" placeholder="请输入名字" />
+
+        <ul>
+          <li v-for="(value,index) of filper">{{value.name}}-{{value.age}}</li>
+        </ul>
+      </div>
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el: "#root",
+        data: {
+          keyword: "",
+          persons: [
+            { id: "001", name: "赵四", age: 18 },
+            { id: "002", name: "赵六", age: 28 },
+            { id: "003", name: "赵雷", age: 68 },
+            { id: "004", name: "马冬梅", age: 68 },
+            { id: "005", name: "赵东鱼", age: 68 },
+            { id: "006", name: "周杰伦", age: 68 },
+            { id: "006", name: "周冬雨", age: 68 },
+          ],
+        },
+
+        // watch: {
+        //   keyword: {
+        //     immediate: true,
+        //     handler(value) {
+        //       this.filper = this.persons.filter((p) => {
+        //         return p.name.indexOf(value) !== -1;
+        //       });
+        //     },
+        //   },
+        // },
+        computed: {
+          filper() {
+            return this.persons.filter((p) => {
+              return p.name.indexOf(this.keyword) !== -1;
+            });
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
